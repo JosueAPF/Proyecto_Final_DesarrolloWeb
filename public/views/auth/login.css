@@ -1,0 +1,230 @@
+/* ==========================================
+    iniciales para el login
+========================================== */
+:root {
+    --bg-body: #f0f4f8;
+    --bg-card: #ffffff;
+    --bg-banner: #1e3a8a;
+    --bg-browser-bar: #e2e8f0;
+    --color-primary: #0d9488; 
+    --color-error: #dc2626;   
+    --text-main: #334155;
+    --text-muted: #64748b;
+    --border-color: #cbd5e1;
+    --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-body);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+
+/*conte main*/
+.login-main-contenedor{
+    width: 100%;
+    max-width: 460px;
+}
+
+.browser-window {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Barra superior del navegador */
+.browser-header {
+    background-color: var(--bg-browser-bar);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #cbd5e1;
+}
+
+.dots {
+    display: flex;
+    gap: 6px;
+}
+
+.dots span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #94a3b8;
+}
+
+.url-bar {
+    flex-grow: 1;
+    background-color: white;
+    border-radius: 6px;
+    padding: 4px 12px;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin-left: 12px;
+    border: 1px solid #cbd5e1;
+}
+
+/* ==========================================
+   BANNER / LOGO
+========================================== */
+.card-banner {
+    background-color: var(--bg-banner);
+    color: white;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.logo-placeholder {
+    width: 40px;
+    height: 40px;
+    border: 2px dashed rgba(255, 255, 255, 0.4);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.7);
+    flex-shrink: 0;
+}
+
+.card-banner h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================
+   aqui-------------->FORMULARIO
+========================================== */
+.login-content {
+    padding: 28px 24px;
+}
+
+/* Título (Paso 1) */
+.login-title {
+    font-size: 1rem;
+    color: var(--text-main);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    line-height: 1.3;
+}
+
+
+
+/* Inputs (Pasos 2 y 3) */
+form input[type="email"],
+form input[type="password"] {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    color: var(--text-main);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    outline: none;
+    margin-bottom: 12px;
+}
+
+form input[type="email"]:focus,
+form input[type="password"]:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1);
+}
+
+/* Botón Ingresar (Paso 4) */
+form input[type="submit"] {
+    width: 100%;
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    margin-top: 6px;
+}
+
+form input[type="submit"]:hover {
+    background-color: #0f766e;
+}
+
+form input[type="submit"]:active {
+    transform: scale(0.98);
+}
+
+/* Ocultar los <br> de tu PHP para que el diseño fluya mejor */
+form br {
+    display: none;
+}
+
+/* Caja de Error (Paso 5) */
+.error-message {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 10px 14px;
+    border: 1.5px solid var(--color-error);
+    border-radius: 6px;
+    color: var(--color-error);
+    font-size: 0.8rem;
+    font-weight: 600;
+    background-color: #fef2f2;
+}
+
+/* Texto inferior */
+.redirect-text {
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 24px;
+    line-height: 1.4;
+}
+
+/* ==========================================
+   RESPONSIVE para telegonos y tabletas
+========================================== */
+@media (max-width: 480px) {
+    .login-content {
+        padding: 20px 16px;
+    }
+    
+    .card-banner {
+        padding: 12px;
+    }
+
+    .card-banner h2 {
+        font-size: 1rem;
+    }
+
+    .login-title {
+        font-size: 0.9rem;
+    }
+}
