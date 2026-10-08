@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="login.css">
-    <title>Document</title>
+    <title>Login</title>
 </head>
 
 <body>
@@ -82,7 +82,7 @@
                         $_SESSION['username'] = $usuario[$username];
                         $_SESSION['rol'] = $mirol;
                         //usar uno de prueba
-                        header("Location: prueba.php");
+                        header("Location: ../panel/Admin.php");
                         exit;
                         break;
                     case 'CAJERO':
@@ -90,7 +90,7 @@
                         $_SESSION['username'] = $usuario[$username];
                         $_SESSION['rol'] = $mirol;
                         //usar uno de prueba
-                        header("Location: prueba.php");
+                        header("Location: ../panel/Cajero.php");
                         exit;
                         break;
                     default:
