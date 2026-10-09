@@ -4,14 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Panel Cajero</title>
 </head>
 
 <body>
+    <main></main>
     <?php
     session_start();
+    if ($_SESSION['authenticado'] === true and $_SESSION['rol'] === "CAJERO") {
 
-    if ($_SESSION['authenticado'] === true) {
         $session_name = $_SESSION['username'];
         $get_rol = $_SESSION['rol'];
 
@@ -22,12 +23,17 @@
         echo $session_name;
         echo $get_rol;
         echo "</pre>";
-
+        echo "<br>";
+        echo "<pre>";
+        print_r($_SESSION);
+        echo "</pre>";
+    } else {
+        header("Location: ../auth/Cajero.php");
+        exit;
     }
 
 
     ?>
-
 </body>
 
 </html>

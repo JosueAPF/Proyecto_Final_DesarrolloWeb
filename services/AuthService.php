@@ -7,14 +7,20 @@ class AuthService
     public function __construct()
     {
         $this->repo = new AuthRepository();
-       
+
     }
 
     public function Login(string $userName, string $pass)
     {
         $datos = $this->repo->Login($userName);
         if (!$datos || !isset($datos['estado']) or $datos['estado'] != 'ok') {
-            throw new Exception("Usuario inexistente");
+            //throw new Exception("Usuario inexistente");
+            session_start();
+            $_SESSION['authenticado'] = false;
+            header("Location: /php_proyectos/Proyecto_Final_DesarrolloWeb/public/");
+            exit;
+
+
         }
 
         switch ($datos['estado']) {
@@ -27,13 +33,13 @@ class AuthService
                     ];
                 }
                 break;
-            
+
             //esto viene del SP
             case 'Contraseña incorrecta.':
-                throw new Exception('Cajero bloqueado');
+                throw new Exception('Contraseña incorrecta');
                 break;
             case 'Cajero esta Bloqueado':
-                throw new Exception('Usuario inexistente');
+                throw new Exception('Cajero  Bloqueado');
                 break;
             default:
                 echo "Estado de usuario no válido o no encontrado.";

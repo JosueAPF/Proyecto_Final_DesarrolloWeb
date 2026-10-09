@@ -1,0 +1,204 @@
+/* ==========================================
+   VARIABLES hay que hacerlas globales
+========================================== */
+:root {
+    --bg-body: #f0f4f8;
+    --bg-card: #ffffff;
+    --bg-banner: #1e3a8a;
+    --bg-image-placeholder: #f8fafc;
+    --color-primary: #0d9488; 
+    --color-secondary: #64748b;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+    --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-body);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* ==========================================
+   TARJETA DE ERROR
+========================================== */
+.error-wrapper {
+    width: 100%;
+    max-width: 550px; /* Un poco más ancha para que quepa la imagen */
+}
+
+.error-card {
+    background-color: var(--bg-card);
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Banner / Logo */
+.card-banner {
+    background-color: var(--bg-banner);
+    color: white;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.logo-placeholder {
+    width: 40px;
+    height: 40px;
+    border: 2px dashed rgba(255, 255, 255, 0.4);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.7);
+    flex-shrink: 0;
+}
+
+.card-banner h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Imagen del Error 403 */
+.error-image-placeholder {
+    width: 100%;
+    height: 200px; /* Altura fija para que se vea bien */
+    background-color: var(--bg-image-placeholder);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #94a3b8;
+    font-size: 0.9rem;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Si pones una imagen real, esta la ajustará automáticamente */
+.error-image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Para que la imagen no se deforme */
+    padding: 20px;
+}
+
+/* Contenido de texto */
+.error-content {
+    padding: 30px 24px;
+    text-align: center;
+}
+
+.error-content h1 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: var(--text-main);
+    margin-bottom: 12px;
+    font-weight: 800;
+}
+
+.error-content p {
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    color: var(--text-muted);
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+/* ==========================================
+   ENLACES / BOTONES (Estilizando tu PHP)
+========================================== */
+.action-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+/* Ocultamos los <h1> que rodean los enlaces en tu PHP para que no arruinen el diseño */
+.action-links h1 {
+    display: none; 
+}
+
+/* Estilo base para los enlaces <a> que genera tu PHP */
+.action-links a {
+    display: inline-block;
+    width: 100%;
+    max-width: 300px;
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+/* Estilo para el primer enlace (Iniciar Sesión) - Botón Verde */
+.action-links a:first-of-type {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.action-links a:first-of-type:hover {
+    background-color: #0f766e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+}
+
+/* Estilo para el segundo enlace (Ir a Inicio) - Botón Secundario */
+.action-links a:last-of-type {
+    background-color: white;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+}
+
+.action-links a:last-of-type:hover {
+    background-color: #f0fdfa;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.1);
+}
+
+/* ==========================================
+   RESPONSIVE (Ajustes para móviles)
+========================================== */
+@media (max-width: 480px) {
+    .error-content {
+        padding: 24px 16px;
+    }
+    
+    .card-banner {
+        padding: 12px;
+    }
+
+    .card-banner h2 {
+        font-size: 1rem;
+    }
+
+    .error-image-placeholder {
+        height: 150px;
+    }
+    
+    .action-links a {
+        width: 100%;
+        max-width: 100%;
+    }
+}

@@ -79,21 +79,24 @@
                 switch ($mirol) {
                     case 'ADMIN':
                         $_SESSION['authenticado'] = true;
-                        $_SESSION['username'] = $usuario[$username];
+                        $_SESSION['username'] = $username;
                         $_SESSION['rol'] = $mirol;
-                        //usar uno de prueba
-                        header("Location: ../panel/Admin.php");
+                        //Panel Admin
+                        header("Location: ../panel/Administrador/Admin.php");
                         exit;
                         break;
                     case 'CAJERO':
                         $_SESSION['authenticado'] = true;
                         $_SESSION['username'] = $usuario[$username];
                         $_SESSION['rol'] = $mirol;
-                        //usar uno de prueba
-                        header("Location: ../panel/Cajero.php");
+                        //Panel Cajero
+                        header("Location: ../panel/Cajero/Cajero.php");
                         exit;
                         break;
+                    //me falta panel usuario
                     default:
+                        //menajar alguna vista o algo
+                       
                         # code...
                         break;
                 }
