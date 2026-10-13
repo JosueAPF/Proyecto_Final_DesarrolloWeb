@@ -51,6 +51,7 @@
                         $usuario = $service->Login($username, $password);
                         $usuarioLogueado = $usuario;
                         $mirol = $usuarioLogueado['rol'];
+                        $get_user = $usuarioLogueado○['id_usuario'];
 
                         //relacionado a session
                         session_regenerate_id(true);
@@ -87,7 +88,7 @@
                         break;
                     case 'CAJERO':
                         $_SESSION['authenticado'] = true;
-                        $_SESSION['username'] = $usuario[$username];
+                        $_SESSION['username'] = $username;
                         $_SESSION['rol'] = $mirol;
                         //Panel Cajero
                         header("Location: ../panel/Cajero/Cajero.php");

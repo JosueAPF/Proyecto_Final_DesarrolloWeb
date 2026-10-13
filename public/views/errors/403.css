@@ -4,7 +4,7 @@
 :root {
     --bg-body: #f0f4f8;
     --bg-card: #ffffff;
-    --bg-banner: #1e3a8a;
+    --bg-banner: #fcfcfc;
     --bg-image-placeholder: #f8fafc;
     --color-primary: #0d9488; 
     --color-secondary: #64748b;
@@ -50,7 +50,7 @@ body {
 
 /* Banner / Logo */
 .card-banner {
-    background-color: var(--bg-banner);
+    background-color:white;
     color: white;
     padding: 16px;
     display: flex;
@@ -82,7 +82,7 @@ body {
 /* Imagen del Error 403 */
 .error-image-placeholder {
     width: 100%;
-    height: 200px; /* Altura fija para que se vea bien */
+    height: 200px; 
     background-color: var(--bg-image-placeholder);
     border-bottom: 1px solid var(--border-color);
     display: flex;
@@ -95,15 +95,15 @@ body {
     overflow: hidden;
 }
 
-/* Si pones una imagen real, esta la ajustará automáticamente */
+
 .error-image-placeholder img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Para que la imagen no se deforme */
+    object-fit: contain; 
     padding: 20px;
 }
 
-/* Contenido de texto */
+
 .error-content {
     padding: 30px 24px;
     text-align: center;
@@ -123,9 +123,7 @@ body {
     line-height: 1.5;
 }
 
-/* ==========================================
-   ENLACES / BOTONES (Estilizando tu PHP)
-========================================== */
+
 .action-links {
     display: flex;
     flex-direction: column;
@@ -133,12 +131,11 @@ body {
     align-items: center;
 }
 
-/* Ocultamos los <h1> que rodean los enlaces en tu PHP para que no arruinen el diseño */
 .action-links h1 {
     display: none; 
 }
 
-/* Estilo base para los enlaces <a> que genera tu PHP */
+
 .action-links a {
     display: inline-block;
     width: 100%;
@@ -152,7 +149,7 @@ body {
     text-align: center;
 }
 
-/* Estilo para el primer enlace (Iniciar Sesión) - Botón Verde */
+
 .action-links a:first-of-type {
     background-color: var(--color-primary);
     color: white;
@@ -164,7 +161,6 @@ body {
     box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
 }
 
-/* Estilo para el segundo enlace (Ir a Inicio) - Botón Secundario */
 .action-links a:last-of-type {
     background-color: white;
     color: var(--color-primary);

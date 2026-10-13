@@ -16,22 +16,21 @@
         <div class="error-card">
             
             <!-- ==========================================
-                 BANNER / LOGO (Preparado para tu imagen)
+                  LOGO
             =========================================== -->
             <div class="card-banner">
-                <div class="logo-placeholder" title="Espacio para el Logo">
-                    <!-- AQUÍ PONES TU IMAGEN: <img src="tu-logo.png" alt="Logo"> -->
-                    LOGO
+                <div class="logo-placeholder" title="Logo">
+                    <img src="../../img/banco_nexus_banner_f_azul.png" width="500px" height="90px" alt="Logo"> 
                 </div>
-                <h2>Nombre del Banco</h2>
+                <br>
+                
             </div>
 
             <!-- ==========================================
-                 IMAGEN DEL ERROR 403 (Preparado para tu imagen)
+                 IMAGEN DEL ERROR 
             =========================================== -->
             <div class="error-image-placeholder">
-                <!-- AQUÍ PONES TU IMAGEN: <img src="error-403.png" alt="Acceso Denegado"> -->
-                <span>Espacio para imagen 403</span>
+                <img src="../../img/Acceso_denegado.png" alt="Acceso Denegado"> 
             </div>
 
             <!-- ==========================================
