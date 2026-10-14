@@ -36,34 +36,82 @@ class CajeroServicio
 
     public function listarCajero()
     {
-        $estado = '';
+
         try {
             $misCajeros = $this->repo->listar_cajero();
-            if (empty($misCajeros)) {
-                return $estado = 'Listado vacio';
-            }
-            return [
-                'estado' => 'OK',
-                'datos' => $misCajeros
-            ];
+            return $misCajeros;
 
         } catch (Exception $e) {
-            return [
-                'estado' => 'ERROR',
-                'mensaje' => $e->getMessage()
-            ];
+            return $e->getMessage();
+            
+        }
+    }
+
+
+
+    /**
+     * Generador de Numero para cuentas
+     * @return string
+     */
+    private function generar_noCuenta(): string
+    {
+        do {
+            $numeroCuenta = 'CTA' . rand(10000000, 99999999);
+            $existe = $this->repo->existeNo_cuenta($numeroCuenta);
+        } while ($existe);
+
+        return $numeroCuenta;
+    }
+
+    public function crearCuenta(string $nombre_cuenta, string $dpi, float $monto_inicial)
+    {
+        try {
+            $no_cuenta = $this->generar_noCuenta();
+
+            if (isset($nombre_cuenta) and isset($dpi) and isset($monto_inicial)) {
+                
+                //existencia del dpi
+                if ($this->repo->existeDpi($dpi)) {
+                    throw new Exception(
+                        "Ya existe una cuenta con el DPI: $dpi"
+                    );
+                }
+
+                $nueva_cuenta = $this->repo->crear_cuenta($no_cuenta, $nombre_cuenta, $dpi, $monto_inicial);
+                switch ($nueva_cuenta['estado']) {
+                    /*el monto inicial debe ser mayor a cero */
+                    case "el monto inicial debe ser mayor a cero":
+                        throw new Exception("Error Monto inicial debe ser mayor a cero");
+                    case "Esta cuenta ya Existe en la DB":
+                        throw new Exception("la Cuenta ya existe");
+                    case "Cuenta creada correctamente":
+                        return $nueva_cuenta;
+                    default:
+                        throw new Exception("Respuesta inesperada del procedimiento almacenado");
+                }
+            }
+        } catch (Exception $e) {
+            throw $e;
         }
     }
 
 }
 /*
 $servicio = new CajeroServicio();
-$miscajero = $servicio->listarCajero();
-echo"<pre>";
-print_r($miscajero);
-echo"</pre>";
-echo"<br>";
-echo"<p>Estatus:</p>";
-echo"<br>";
-echo $miscajero['estado'];*/
+$cajero = $servicio->listarCajero();*/
+/*
+echo "<pre>";
+print_r($cajero);
+echo "</pre>";
+echo "<br>";
+echo "<p>Estatus:</p>";
+echo "<br>";*/
+
+/*
+
+foreach($cajero as $user){
+echo "<pre>";
+print_r($user);
+echo "</pre>";
+}*/
 ?>

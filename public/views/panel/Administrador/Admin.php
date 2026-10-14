@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/php_proyectos/Proyecto_Final_DesarrolloWeb/public/views/panel/panel_style.css">
+    <link rel="stylesheet" href="../master.css">
     <title>Panel Administrativo</title>
 </head>
 
@@ -87,7 +87,7 @@
             <div class="footer-column brand-column">
                 <div class="footer-logo-wrapper">
                     <!-- Reemplaza esto con la ruta de tu logo horizontal o el búho -->
-                    <img src="img/banco_nexus_banner_f_azul.png" class="footer-logo">
+                    <img src="/php_proyectos/Proyecto_Final_DesarrolloWeb/public/img/banco_nexus_banner_f_azul.png" class="footer-logo">
                     <!-- Si no tienes la imagen aún, puedes usar este texto temporalmente -->
                     <!-- <span class="logo-text">BANCO <strong>NEXUS</strong></span> -->
                 </div>
