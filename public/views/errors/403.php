@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>No Autorizado - Banco Nexus</title>
     <!-- Fuente moderna y enlace a tu CSS -->
-    <link rel="stylesheet" href="403.css">
+    <link rel="stylesheet" href="error.css">
 </head>
 
 <body>

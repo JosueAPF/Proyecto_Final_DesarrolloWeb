@@ -96,11 +96,56 @@ class CajeroRepository
         $stmt = $dbconn->prepare(
             "SELECT 1 FROM cuenta WHERE dpi = ? LIMIT 1"
         );
-
         $stmt->bind_param("s", $dpi);
         $stmt->execute();
-
         return $stmt->get_result()->num_rows > 0;
+    }
+    /**
+     * consumo del sp_deposito
+     * @param string $no_cuenta
+     * @param float $monto
+     * @return array asociativo
+     */
+    public function hacer_deposito(string $no_cuenta,float $monto){
+        $dbconn = $this->dbConn->getConnection();
+        $conn = $dbconn->prepare("CALL sp_deposito(?,?)");
+        $conn->bind_param("sd", $no_cuenta, $monto);
+        /*
+        var_dump($no_cuenta);
+        var_dump($monto);*/
+        $conn->execute();
+        return $conn->get_result()->fetch_assoc();
+    }
+    /**
+     * consumo del sp_retiro
+     * @param string $no_cuenta
+     * @param float $monto
+     * @return array asociativo
+     */
+    public function hacer_retiro(string $no_cuenta,float $monto){
+        $dbconn = $this->dbConn->getConnection();
+        $conn = $dbconn->prepare("CALL sp_retiro(?,?)");
+        $conn->bind_param("sd", $no_cuenta, $monto);
+        $conn->execute();
+        return $conn->get_result()->fetch_assoc();
+    }
+    
+
+    /******************esto es para clientes mover de aqui */
+    /**
+     * consumo del sp_registrar_cliente
+     * @param string $numero_cuenta
+     * @param string $correo
+     * @param string $dpi
+     * @param string $pass
+     * @return array|bool|null
+     */
+    public function registrar_cliente(string $numero_cuenta,string $correo,string $dpi,string $pass){
+        $dbconn = $this->dbConn->getConnection();
+        $conn = $dbconn->prepare("CALL sp_registrar_cliente(?,?,?,?)");
+        $conn->bind_param("ssss", $numero_cuenta, $correo, $dpi, $pass);
+        $conn->execute();
+        return $conn->get_result()->fetch_assoc();
     }
 
 
@@ -109,12 +154,10 @@ class CajeroRepository
 /*prueba */
 /*
 $servicio = new CajeroRepository();
-$no_cuenta = $servicio->existeNo_cuenta("555555");
+$deposito = $servicio->hacer_retiro('CTA49469945',1.00);
 echo"<pre>";
-print_r($no_cuenta);
+print_r($deposito);
 echo"</pre>";
-
-//echo $no_cuenta;
 */
 
 ?>

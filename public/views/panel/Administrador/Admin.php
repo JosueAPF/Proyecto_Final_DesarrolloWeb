@@ -10,39 +10,40 @@
 
 <body>
     <header class="main-header">
-    <!-- ==========================================
-         NAVBAR GENÉRICO - BANCO NEXUS 
+        <!-- ==========================================
+         NAVBAR GENeRICO 
     ========================================== -->
-    <nav class="navbar">
-        <div class="nav-container">
+        <nav class="navbar">
+            <div class="nav-container">
 
-            <!-- Logo -->
-            <a href="#" class="nav-logo">
-                BANCO <strong>NEXUS</strong>
-            </a>
+                <!-- Logo -->
+                <a href="#" class="nav-logo">
+                    BANCO <strong>NEXUS</strong>
+                </a>
 
-            <!-- 1. Checkbox oculto (El "motor" del menú) -->
-            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+                <!-- 1. Checkbox oculto (El "motor" del menú) -->
+                <input type="checkbox" id="menu-toggle" class="menu-toggle">
 
-            <!-- 2. Label que funciona como botón hamburguesa -->
-            <label for="menu-toggle" class="nav-toggle" aria-label="Abrir menú de navegación">
-                <span></span>
-                <span></span>
-                <span></span>
-            </label>
+                <!-- 2. Label que funciona como botón hamburguesa -->
+                <label for="menu-toggle" class="nav-toggle" aria-label="Abrir menú de navegación">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
 
-            <!-- 3. Enlaces de Navegación -->
-            <ul class="nav-menu">
-                <li><a href="/php_proyectos/Proyecto_Final_DesarrolloWeb/public/" class="nav-link active">Inicio</a></li>
-                <li><a href="#" class="nav-link">Sucursales</a></li>
-                <li><a href="#" class="nav-link">Preguntas Frecuentes</a></li>
-                <li><a href="#" class="nav-link">Contacto</a></li>
-            </ul>
+                <!-- 3. Enlaces de Navegación -->
+                <ul class="nav-menu">
+                    <li><a href="/php_proyectos/Proyecto_Final_DesarrolloWeb/public/" class="nav-link active">Inicio</a>
+                    </li>
+                    <li><a href="#" class="nav-link">Sucursales</a></li>
+                    <li><a href="#" class="nav-link">Preguntas Frecuentes</a></li>
+                    <li><a href="#" class="nav-link">Contacto</a></li>
+                </ul>
 
-        </div>
-    </nav>
-</header>
-    <main>
+            </div>
+        </nav>
+    </header>
+    <main class="main-content">
         <?php
         session_start();
         if (
@@ -87,7 +88,8 @@
             <div class="footer-column brand-column">
                 <div class="footer-logo-wrapper">
                     <!-- Reemplaza esto con la ruta de tu logo horizontal o el búho -->
-                    <img src="/php_proyectos/Proyecto_Final_DesarrolloWeb/public/img/banco_nexus_banner_f_azul.png" class="footer-logo">
+                    <img src="/php_proyectos/Proyecto_Final_DesarrolloWeb/public/img/banco_nexus_banner_f_azul.png"
+                        class="footer-logo">
                     <!-- Si no tienes la imagen aún, puedes usar este texto temporalmente -->
                     <!-- <span class="logo-text">BANCO <strong>NEXUS</strong></span> -->
                 </div>

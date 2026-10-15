@@ -4,48 +4,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../master.css">
     <title>Panel Cajero</title>
 </head>
 
 <body>
-    <?php
-    session_start();
+    <header class="main-header">
+        <!-- ==========================================
+         NAVBAR GENeRICO 
+    ========================================== -->
+        <nav class="navbar">
+            <div class="nav-container">
 
-    if ($_SESSION['authenticado'] === true and 
-        isset($_SESSION['rol']) and 
-        $_SESSION['rol'] === "CAJERO" and
-        isset($_SESSION['username'])){
+                <!-- Logo -->
+                <a href="#" class="nav-logo">
+                    BANCO <strong>NEXUS</strong>
+                </a>
 
-        $session_name = $_SESSION['username'];
-        $get_rol = $_SESSION['rol'];
+                <!-- 1. Checkbox oculto (El "motor" del menú) -->
+                <input type="checkbox" id="menu-toggle" class="menu-toggle">
 
-       
+                <!-- 2. Label que funciona como botón hamburguesa -->
+                <label for="menu-toggle" class="nav-toggle" aria-label="Abrir menú de navegación">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+
+                <!-- 3. Enlaces de Navegación -->
+                <ul class="nav-menu">
+                    <li><?php
+                    session_start();
+                    if (isset($_SESSION['username'])) {
+                        echo "<strong>" .$_SESSION['username'] . "</strong>";
+                    }
+                    ?>
+                    </li>
+                    <li>
+                        <a href="Cajero.php?Modulo=Main" class="nav-link active">Inicio</a>
+                    </li>
+                    <li><a href="Cajero.php?Modulo=CrearCuenta" class="nav-link">Crear Cuenta</a></li>
+                    <li><a href="Cajero.php?Modulo=Depositos" class="nav-link">Deposito Monetario</a></li>
+                    <li><a href="Cajero.php?Modulo=Retiros" class="nav-link">Retiro Monetario</a></li>
+                    <li><a href='../logaout.php' class="nav-link">Salir</a></li>
+                </ul>
+
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <?php
 
 
-        echo "<pre>";
-        echo session_id();
-        echo "<br>";
-        echo $session_name;
-        echo"<br>";
-        echo $get_rol;
-        echo "</pre>";
-        echo "<br>";
-        echo "<pre>";
-        print_r($_SESSION);
-        echo "</pre>";
-        echo "<br>";
-        echo "<a href='../logaout.php'>Salir</a>";
+        if (
+            $_SESSION['authenticado'] === true and
+            isset($_SESSION['rol']) and
+            $_SESSION['rol'] === "CAJERO" and
+            isset($_SESSION['username'])
+        ) {
+            echo "<div class='panel-body'>";
+
+            
+            //redireccion y dibujo de fragmentos
+            $seccion = $_GET['Modulo'] ?? 'inicio';
+             
+            //debug chafa
+            //echo "Modulo recibido: " . $seccion . "<br>";
+
+            switch ($seccion) {
+
+                case 'CrearCuenta':
+                    require 'Modulo/CrearCuenta.php';
+                    break;
+                case 'Depositos':
+                    require 'Modulo/Depositos.php';
+                    break;
+                case 'Retiros':
+                    require 'Modulo/Retiros.php';
+                    break;
+
+                default:
+                    require 'Modulo/Main.php';
+            }
+            echo "</div>";
+        } else {
+            header("Location: /php_proyectos/Proyecto_Final_DesarrolloWeb/public/views/errors/403.php");
+            exit;
+        }
 
 
-        
+        ?>
+    </main>
+    <!----------Footer generico hay que usarlo en todas las vistas------------->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <!-- Columna 1: Logo y descripción -->
+            <div class="footer-column brand-column">
+                <div class="footer-logo-wrapper">
+                    <!-- Reemplaza esto con la ruta de tu logo horizontal o el búho -->
+                    <img src="/php_proyectos/Proyecto_Final_DesarrolloWeb/public/img/banco_nexus_banner_f_azul.png"
+                        class="footer-logo">
+                    <!-- Si no tienes la imagen aún, puedes usar este texto temporalmente -->
+                    <!-- <span class="logo-text">BANCO <strong>NEXUS</strong></span> -->
+                </div>
+                <p class="footer-description">
+                    Tu aliado financiero. Seguridad, confianza y tecnología en un solo lugar.
+                </p>
+            </div>
+            <!-- Columna 3: Contacto (Datos Ficticios) -->
+            <div class="footer-column contact-column">
+                <h4>Contacto</h4>
+                <ul class="footer-contact">
+                    <li>📍 Av. Reforma 10-50, Zona 10, Guatemala</li>
+                    <li>📞 +502 1234 5678</li>
+                    <li>✉️ soporte@banconexus.com</li>
+                </ul>
+            </div>
 
-    } else {
-       header("Location: /php_proyectos/Proyecto_Final_DesarrolloWeb/public/views/errors/403.php");
-       exit;
-    }
+            <!-- Mis datos no esta de mas -->
+            <div class="footer-column student-column">
+                <div class="student-card">
+                    <h4>Proyecto Académico</h4>
+                    <p class="student-name"><strong>Estudiante:</strong> Josue Abraham Porras Figueroa</p>
+                    <p class="student-carnet"><strong>Carnet:</strong> 0900-15-18671</p>
+                    <p class="student-course">Desarrollo Web - Proyecto Final</p>
+                </div>
+            </div>
 
-
-    ?>
+        </div>
+        <!-- Barra inferior de Copyright -->
+        <div class="footer-bottom">
+            <p>&copy; Banco Nexus. Todos los derechos reservados.</p>
+        </div>
+    </footer>
 </body>
 
 </html>

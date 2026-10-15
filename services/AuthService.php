@@ -13,12 +13,14 @@ class AuthService
     public function Login(string $userName, string $pass)
     {
         $datos = $this->repo->Login($userName);
-        if (!$datos || !isset($datos['estado']) or $datos['estado'] != 'ok') {
+        //!$datos || !isset($datos['estado']) or $datos['estado'] != 'ok'
+        if (!$datos || !isset($datos['estado'])) {
             //throw new Exception("Usuario inexistente");
-            session_start();
+            /*session_start();
             $_SESSION['authenticado'] = false;
             header("Location: /php_proyectos/Proyecto_Final_DesarrolloWeb/public/");
-            exit;
+            exit;*/
+            throw new Exception('Respuesta inválida');
 
 
         }
@@ -29,10 +31,13 @@ class AuthService
                 if (password_verify($pass, $datos['password'])) {
                     return [
                         'id_usuario' => $datos['id_usuario'],
-                        'rol' => $datos['rol']
+                        'rol' => $datos['rol'],
+                        'bloqueado' => $datos['bloqueado']
+                        
                     ];
                 }
-                break;
+                //si vienen nulos
+                throw new Exception('Contraseña incorrecta');
 
             //esto viene del SP
             case 'Contraseña incorrecta.':

@@ -49,19 +49,16 @@
                     try {
                         $service = new AuthService();
                         $usuario = $service->Login($username, $password);
+                        
                         $usuarioLogueado = $usuario;
                         $mirol = $usuarioLogueado['rol'];
-                        $get_user = $usuarioLogueado○['id_usuario'];
+                        $get_user = $usuarioLogueado['id_usuario'];
+                        $estaBloqueado = $usuarioLogueado['bloqueado'];
+
+                        
 
                         //relacionado a session
                         session_regenerate_id(true);
-                        //---->esto es mejor evaluarlo en el switch
-                        /*
-                        $_SESSION['authenticado'] = true;
-                        $_SESSION['username'] = $usuario['username'];
-                        header("Location: /php_desarrollo_web/Session_prueba_SID_2/public/views/lista.php");
-                        exit;*/
-
 
                     } catch (Exception $e) {
                         $mensajeError = $e->getMessage();
@@ -90,6 +87,7 @@
                         $_SESSION['authenticado'] = true;
                         $_SESSION['username'] = $username;
                         $_SESSION['rol'] = $mirol;
+                        $_SESSION['bloqueado'] = $estaBloqueado;
                         //Panel Cajero
                         header("Location: ../panel/Cajero/Cajero.php");
                         exit;
@@ -153,6 +151,7 @@
                     <?php if (!empty($mensajeError)): ?>
                         <p style="color: red;"><?php echo $mensajeError; ?></p>
                     <?php endif; ?>
+                    
 
                     <?php if ($usuarioLogueado): ?>
                         <p style="color: green;">
