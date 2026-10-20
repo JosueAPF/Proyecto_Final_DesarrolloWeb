@@ -272,6 +272,28 @@ body {
 }
 
 /* ==========================================
+   LAYOUT PARA FORMULARIO CON IMAGEN LATERAL
+========================================== */
+.panel-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr; /* Formulario un poco más ancho que la imagen */
+    gap: 3rem;
+    align-items: center; /* Centra la imagen verticalmente respecto al form */
+    max-width: 1000px; /* Para que no se estire de más en pantallas grandes */
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Estilo para la imagen */
+.panel-image img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Centra la imagen en su columna */
+}
+
+/* ==========================================
    FOOTER RESPONSIVO
 ========================================== */
 .main-footer {
@@ -479,7 +501,16 @@ body {
     .panel-form{
         max-width: 100%;
     }
+    .panel-layout {
+        grid-template-columns: 1fr; /* Una sola columna en celular */
+        gap: 2rem;
+    }
 }
+
+
+
+
+
 /*
 @media (max-width:768px){
 

@@ -20,24 +20,36 @@
                 <a href="#" class="nav-logo">
                     BANCO <strong>NEXUS</strong>
                 </a>
-
-                <!-- 1. Checkbox oculto (El "motor" del menú) -->
+                <!-----------hamburguesa---------------------------------->
+                <!-- Checkbox  -->
                 <input type="checkbox" id="menu-toggle" class="menu-toggle">
 
-                <!-- 2. Label que funciona como botón hamburguesa -->
+                <!-- Label  -->
                 <label for="menu-toggle" class="nav-toggle" aria-label="Abrir menú de navegación">
                     <span></span>
                     <span></span>
                     <span></span>
                 </label>
+                <!-----------hamburguesa---------------------------------->
 
-                <!-- 3. Enlaces de Navegación -->
                 <ul class="nav-menu">
-                    <li><a href="/php_proyectos/Proyecto_Final_DesarrolloWeb/public/" class="nav-link active">Inicio</a>
+                    <li><?php
+                    session_start();
+                    if (isset($_SESSION['username'])) {
+                        echo "<strong>" .$_SESSION['username'] . "</strong>";
+                    }
+                    ?>
                     </li>
-                    <li><a href="#" class="nav-link">Sucursales</a></li>
-                    <li><a href="#" class="nav-link">Preguntas Frecuentes</a></li>
-                    <li><a href="#" class="nav-link">Contacto</a></li>
+                    <li>
+                        <a href="Admin.php?GestionCajero=Main" class="nav-link active">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="Admin.php?GestionCajero=NuevoCajero" class="nav-link">Nuevo Cajero</a>
+                    </li>
+                    <li>
+                        <a href="Admin.php?GestionCajero=listarCajeros" class="nav-link">Mis Cajeros</a>
+                    </li>
+                    <li><a href='../logaout.php' class="nav-link">Salir</a></li>
                 </ul>
 
             </div>
@@ -45,40 +57,38 @@
     </header>
     <main class="main-content">
         <?php
-        session_start();
+       
         if (
             $_SESSION['authenticado'] === true and
             isset($_SESSION['rol']) and
             $_SESSION['rol'] === "ADMIN" and
             isset($_SESSION['username'])
         ) {
-            echo "<br>";
+           
+            //fragmentos
+            echo "<div class='panel-body'>";
+            $seccion = $_GET['GestionCajero'] ?? 'inicio';
 
-            $session_name = $_SESSION['username'];
-            $get_rol = $_SESSION['rol'];
+            //debug chafa-> se supone que me tare solo el nombre de la "seccion"
+            echo "Modulo recibido: " . $seccion . "<br>";
+        
+            switch ($seccion) {
 
+                case 'listarCajeros':
+                    require 'GestionCajero/listarCajeros.php';
+                    break;
+                case 'NuevoCajero':
+                    require 'GestionCajero/NuevoCajero.php';
+                    break;
+                default:
+                    require 'GestionCajero/Main.php';
 
-            echo "<pre>";
-            echo session_id();
-            echo "<br>";
-            echo $session_name;
-            echo "<br>";
-            echo $get_rol;
-            echo "</pre>";
-            echo "<br>";
-            echo "<pre>";
-            print_r($_SESSION);
-            echo "</pre>";
-
-
-            echo "<br>";
-            echo "<a href='../logaout.php'>Salir</a>";
+            }
+            echo'</div>';
         } else {
             header("Location: /php_proyectos/Proyecto_Final_DesarrolloWeb/public/views/errors/403.php");
             exit;
         }
-
-
         ?>
     </main>
     <!----------Footer generico hay que usarlo en todas las vistas------------->
@@ -110,7 +120,7 @@
             <!-- Mis datos no esta de mas -->
             <div class="footer-column student-column">
                 <div class="student-card">
-                    <h4>Proyecto Académico</h4>
+                    <h4>Datos</h4>
                     <p class="student-name"><strong>Estudiante:</strong> Josue Abraham Porras Figueroa</p>
                     <p class="student-carnet"><strong>Carnet:</strong> 0900-15-18671</p>
                     <p class="student-course">Desarrollo Web - Proyecto Final</p>

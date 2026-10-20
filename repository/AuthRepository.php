@@ -25,18 +25,6 @@ class AuthRepository
     }
 }
 
-/*
-$repo = new AuthRepository();
-$datos = $repo->Login("cajero1@banco.com");
-print_r($datos['estado']);
-echo "<br>";
-print_r($datos['id_usuario']);
-echo "<br>";
-print_r("Rol : ".$datos['rol']);
-echo "<br>";
-print_r($datos['password']);
-echo "<br>";
-print_r($datos['bloqueado']);
-*/
+
 
 ?>

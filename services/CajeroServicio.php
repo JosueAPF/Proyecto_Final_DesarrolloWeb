@@ -44,6 +44,28 @@ class CajeroServicio
         }
     }
 
+    public function accion_bloquear_cajero(int $id_usuario, int $bloquear){
+        try {
+            //le puse accion no se me ocurrio mas tego sueño
+            $accion = $this->repo->bloquear_cajero($id_usuario,$bloquear);
+            switch ($accion['estado']) {
+                //esta opcion posiblemente nunca la vea
+                case 1:
+                    throw new Exception("valor de bloqueo invalido");
+                //mismo caso en donde se ejecutara todo es un cajero
+                case 2:
+                    throw new Exception("Ese usuario no es cajero");
+                case 0:
+                    throw new Exception("Cajero bloqueado");
+            }
+            return $accion;
+
+        } catch (Exception $e) {
+            return $e->getMessage();
+
+        }
+    }
+
 
 
     /**
@@ -164,8 +186,6 @@ class CajeroServicio
                 default:
                     throw new Exception("Respuesta inesperada del procedimiento almacenado");
             }
-
-
         } catch (Exception $e) {
             throw $e;
         }

@@ -14,4 +14,10 @@
             }
       }
 
+/*
+      $newHash = new HashearPass();
+      
+      echo $newHash->Hashear("mango");
+      */
+
 ?>

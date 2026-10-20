@@ -12,7 +12,7 @@
     <header class="main-header">
         <!-- ==========================================
          NAVBAR GENeRICO 
-    ========================================== -->
+        ========================================== -->
         <nav class="navbar">
             <div class="nav-container">
 
@@ -56,7 +56,6 @@
     <main class="main-content">
         <?php
 
-
         if (
             $_SESSION['authenticado'] === true and
             isset($_SESSION['rol']) and
@@ -69,7 +68,7 @@
             //redireccion y dibujo de fragmentos
             $seccion = $_GET['Modulo'] ?? 'inicio';
              
-            //debug chafa
+            //debug chafa-> se supone que me tare solo el nombre de la "seccion"
             //echo "Modulo recibido: " . $seccion . "<br>";
 
             switch ($seccion) {
