@@ -36,6 +36,7 @@
                     <li><?php
                     session_start();
                     if (isset($_SESSION['username'])) {
+                        echo "<strong style='color:#1E3A8A;'>[" . $_SESSION['rol'] . "]</strong> ";
                         echo "<strong>" .$_SESSION['username'] . "</strong>";
                     }
                     ?>
@@ -70,7 +71,7 @@
             $seccion = $_GET['GestionCajero'] ?? 'inicio';
 
             //debug chafa-> se supone que me tare solo el nombre de la "seccion"
-            echo "Modulo recibido: " . $seccion . "<br>";
+            //echo "Modulo recibido: " . $seccion . "<br>";
         
             switch ($seccion) {
 

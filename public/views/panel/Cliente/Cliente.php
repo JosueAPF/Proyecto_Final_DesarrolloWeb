@@ -36,18 +36,22 @@
                     <li><?php
                     session_start();
                     if (isset($_SESSION['username'])) {
+                        echo "<strong style='color:#0D9488;'>[" . $_SESSION['rol'] . "]</strong> ";
                         echo "<strong>" . $_SESSION['username'] . "</strong>";
                     }
                     ?>
                     </li>
                     <li>
-                        <a href="Admin.php?GestionCajero=Main" class="nav-link active">Inicio</a>
+                        <a href="Cliente.php?Modulo=Main" class="nav-link active">Inicio</a>
                     </li>
                     <li>
-                        <a href="Admin.php?GestionCajero=NuevoCajero" class="nav-link">Nuevo Cajero</a>
+                        <a href="Cliente.php?Modulo=CuentaTerceros" class="nav-link">Cuenta de Terceros</a>
                     </li>
                     <li>
-                        <a href="Admin.php?GestionCajero=listarCajeros" class="nav-link">Mis Cajeros</a>
+                        <a href="Cliente.php?Modulo=Transferencias" class="nav-link">Transferencias</a>
+                    </li>
+                     <li>
+                        <a href="Cliente.php?Modulo=EstadoCuenta" class="nav-link">EstadoCuenta</a>
                     </li>
                     <li><a href='../logaout.php' class="nav-link">Salir</a></li>
                 </ul>
@@ -64,44 +68,32 @@
             $_SESSION['rol'] === "CLIENTE" and
             isset($_SESSION['username'])
         ) {
-            echo "<div class='panel-body'>";
-            $session_name = $_SESSION['username'];
-            $get_rol = $_SESSION['rol'];
+             echo "<div class='panel-body'>";
 
+            
+            //redireccion y dibujo de fragmentos
+            $seccion = $_GET['Modulo'] ?? 'inicio';
+             
+            //debug chafa-> se supone que me tare solo el nombre de la "seccion"
+            //echo "Modulo recibido: " . $seccion . "<br>";
 
+            switch ($seccion) {
 
-            /* a ver que trae la session
-            echo "<pre>";
-            echo session_id();
-            echo "<br>";
-            echo $session_name;
-            echo "<br>";
-            echo $get_rol;
-            echo "<br>";
+                case 'CuentaTerceros':
+                    require 'Modulo/CuentaTerceros.php';
+                    break;
+                case 'Transferencias':
+                    require 'Modulo/Transferencias.php';
+                    break;
+                case 'EstadoCuenta':
+                    require 'Modulo/EstadoCuenta.php';
+                    break;
 
-            echo "</pre>";
-            echo "<br>";
-            echo "<pre>";
-            print_r($_SESSION);
-            echo "</pre>";
-            echo "<br>";
-            */
-
-            echo "Hola " . "<strong>" . $session_name . "</strong>";
-            echo "<hr>";
-
-            echo "<br>";
-            echo "<h4>Acciones para el Rol</h4>";
-            echo "<pre>";
-            echo "<ul>";
-            echo "<li>Agregar Cuenta de Terceros</li>";
-            echo "<li>Transferencia Cuenta de Terceros</li>";
-            echo "<li>Estado de Cuenta</li>";
-            echo "</ul>";
-            echo "</pre>";
-
-
+                default:
+                    require 'Modulo/Main.php';
+            }
             echo "</div>";
+            
         } else {
             header("Location: /php_proyectos/Proyecto_Final_DesarrolloWeb/public/views/errors/403.php");
             exit;

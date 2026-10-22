@@ -94,6 +94,7 @@
                             $_SESSION['authenticado'] = true;
                             $_SESSION['username'] = $username;
                             $_SESSION['rol'] = $mirol;
+                            
                             //Panel Admin
                             header("Location: ../panel/Administrador/Admin.php");
                             exit;
@@ -109,6 +110,7 @@
                             break;
                         case 'CLIENTE':
                             $_SESSION['authenticado'] = true;
+                            $_SESSION['id_usuario'] = $get_user;
                             $_SESSION['username'] = $username;
                             $_SESSION['rol'] = $mirol;
                             //A PANEL CLIENTE

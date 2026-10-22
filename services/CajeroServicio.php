@@ -103,7 +103,7 @@ class CajeroServicio
                         "Ya existe una cuenta con el DPI: $dpi"
                     );
                 }
-
+                
                 $nueva_cuenta = $this->repo->crear_cuenta($no_cuenta, $nombre_cuenta, $dpi, $monto_inicial);
                 switch ($nueva_cuenta['estado']) {
                     /*el monto inicial debe ser mayor a cero */
@@ -112,6 +112,13 @@ class CajeroServicio
                     case "Esta cuenta ya Existe en la DB":
                         throw new Exception("la Cuenta ya existe");
                     case "Cuenta creada correctamente":
+                        echo "<div class='success-alert'>";
+                        echo "<h3>
+                            Cajero Registrado con Exito!
+                            </h3>";
+                        echo "<span class='account-number'>".$no_cuenta."</span>";
+                        echo "<p>Guarde este numero de cuenta, es necesario para que el usuario inicie sesion.</p>";
+                        echo "</div>";
                         return $nueva_cuenta;
                     default:
                         throw new Exception("Respuesta inesperada del procedimiento almacenado");

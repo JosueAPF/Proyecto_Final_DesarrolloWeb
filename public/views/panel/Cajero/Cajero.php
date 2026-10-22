@@ -36,6 +36,7 @@
                     <li><?php
                     session_start();
                     if (isset($_SESSION['username'])) {
+                        echo "<strong style='color:#2563EB;'>[" . $_SESSION['rol'] . "]</strong> ";
                         echo "<strong>" .$_SESSION['username'] . "</strong>";
                     }
                     ?>

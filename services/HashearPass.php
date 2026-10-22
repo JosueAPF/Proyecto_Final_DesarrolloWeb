@@ -17,7 +17,7 @@
 /*
       $newHash = new HashearPass();
       
-      echo $newHash->Hashear("mango");
-      */
-
+      echo $newHash->Hashear("cliente0");
+      
+*/
 ?>

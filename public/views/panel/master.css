@@ -153,6 +153,61 @@ body {
     margin-bottom: 1rem;
 }
 
+
+/* ==========================================
+   ALERTA DE ÉXITO LLAMATIVA (NUEVO USUARIO)
+========================================== */
+.success-alert {
+    /* Estilos base y colores de la marca */
+    background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);
+    border: 2px solid var(--color-accent, #0d9488);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem; /* Separación del formulario */
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    
+    /* Efecto de brillo animado */
+    box-shadow: 0 10px 25px -5px rgba(13, 148, 136, 0.3);
+    animation: pulse-glow 2s infinite;
+}
+
+/* Título del mensaje */
+.success-alert h3 {
+    color: #0f766e;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* El número de cuenta resaltado */
+.success-alert .account-number {
+    display: block;
+    font-family: 'Courier New', Courier, monospace; /* Fuente tipo banco */
+    font-size: clamp(1.2rem, 4vw, 1.8rem); /* Se adapta al tamaño de pantalla */
+    font-weight: 800;
+    color: #1e3a8a; /* Azul oscuro corporativo */
+    background-color: #ffffff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: 1px dashed #0d9488;
+    margin: 0 auto;
+    word-break: break-all; /* Evita que se salga de la pantalla en móviles */
+    max-width: 100%;
+}
+
+/* Texto de ayuda inferior */
+.success-alert p {
+    color: #475569;
+    font-size: 0.85rem;
+    margin-top: 1rem;
+}
+
 /* ==========================================
    NAVBAR RESPONSIVO
 ========================================== */
@@ -410,6 +465,7 @@ body {
         cursor: pointer;
         padding: 0.5rem;
         z-index: 1001;
+       
     }
 
     .nav-toggle span {
@@ -419,6 +475,7 @@ body {
         background-color: var(--color-primary);
         border-radius: 3px;
         transition: all var(--transition);
+        
     }
 
     .nav-menu {
@@ -505,6 +562,21 @@ body {
         grid-template-columns: 1fr; /* Una sola columna en celular */
         gap: 2rem;
     }
+    
+}
+
+
+/*para el mensaje llamativo*/
+@keyframes pulse-glow {
+    0% {
+        box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(13, 148, 136, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(13, 148, 136, 0);
+    }
 }
 
 
@@ -527,3 +599,4 @@ body {
     }
 
 }*/
+

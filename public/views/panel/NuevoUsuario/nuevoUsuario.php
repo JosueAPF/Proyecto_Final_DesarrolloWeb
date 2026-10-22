@@ -32,12 +32,10 @@
                 </label>
 
                 <!-- 3. Enlaces de Navegación -->
-
-
-
                 <ul class="nav-menu">
                     <li><a href="/php_proyectos/Proyecto_Final_DesarrolloWeb/public/" class="nav-link">Principal</a>
                     </li>
+
                 </ul>
 
 
@@ -46,52 +44,96 @@
     </header>
 
     <main class="main-content">
-         <!-- NUEVO CONTENEDOR -->
+        <?php
+            require_once __DIR__ . '/../../../../services/ClienteServicio.php';
+            $servicio = new ClienteServicio();
+
+
+            if (($_SERVER['REQUEST_METHOD'] === 'POST')) {
+
+                if (
+                    isset($_POST['numero_cuenta']) &&
+                    isset($_POST['Correo']) &&
+                    isset($_POST['dpi']) &&
+                    isset($_POST['pass'])&&
+                    isset($_POST['passConfirm'])
+                ) {
+                    try {
+
+                        $no_cuenta = $_POST['numero_cuenta'];
+                        $usuario = $_POST['Correo'];
+                        $dpi = $_POST['dpi'];
+                        $pass = $_POST['pass'];
+                        $confirmPass = $_POST['passConfirm'];
+
+                        if($confirmPass != $pass){
+                            echo "<p class='msg-error'>";
+                            echo"Error de confirmacion de contraseña";
+                            echo "</p>";
+                        }
+
+                        
+                        $nuevo_usuario = $servicio->Registrar_nuevo_usuario($no_cuenta, $usuario, $dpi, $pass,$confirmPass);
+                       
+                        echo "<p class='msg-success'>";
+                        print_r($nuevo_usuario["mensaje"]);
+                        echo "</p>";
+                    } catch (Exception $e) {
+                        echo "<p class='msg-error'>";
+                        echo $e->getMessage();
+                        echo "</p>";
+                    }
+
+                }
+            }
+
+            ?>
+
         <div class="panel-layout">
-        <form class="panel-form" method="POST">
-
-
-            <div class="form-group">
-                <label for="numerocuenta">No Cuenta Bancaria</label>
-                <input type="text"  name="numero_cuenta" required>
-            </div>
-
-            <div class="form-group">
-                <label for="correo">Correo</label>
-                <input type="email" name="Correo" required>
-            </div>
-
-             <div class="form-group">
-                <label for="dpi">DPI</label>
-                <input type="text" name="dpi" required>
-            </div>
-
-            <div class="form-group">
-                <label for="dpi">Contraseña</label>
-                <input type="pass" name="pass" required>
-            </div>
-             <div class="form-group">
-                <label for="dpi">Confirmar Contraseña</label>
-                <input type="pass" name="passConfirm" required>
-            </div>
-
-            <button class="btn-primary" type="submit">
-                Registrar
-            </button>
             
-        </form>
+            <form class="panel-form" method="POST">
 
-         <!-- AQUÍ AGREGAS LA IMAGEN -->
+
+                <div class="form-group">
+                    <label for="numerocuenta">No Cuenta Bancaria</label>
+                    <input type="text" name="numero_cuenta" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="correo">Correo</label>
+                    <input type="email" name="Correo" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="dpi">DPI</label>
+                    <input type="text" name="dpi" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="dpi">Contraseña</label>
+                    <input type="password" name="pass" required>
+                </div>
+                <div class="form-group">
+                    <label for="dpi">Confirmar Contraseña</label>
+                    <input type="password" name="passConfirm" required>
+                </div>
+
+                <button class="btn-primary" type="submit">
+                    Registrar
+                </button>
+
+            </form>
+
+            <!-- AQUÍ AGREGAS LA IMAGEN -->
             <div class="panel-image">
                 <!-- Reemplaza el src con la ruta de tu imagen -->
-                <img src="/php_proyectos/Proyecto_Final_DesarrolloWeb/public/img/NuevoUsuario.png" 
-                    class="login-banner-img" 
-                    style="mix-blend-mode: multiply;">
+                <img src="/php_proyectos/Proyecto_Final_DesarrolloWeb/public/img/NuevoUsuario.png"
+                    class="login-banner-img" style="mix-blend-mode: multiply;">
             </div>
 
         </div>
     </main>
-   
+
     <!----------Footer generico hay que usarlo en todas las vistas------------->
     <footer class="main-footer">
         <div class="footer-container">
