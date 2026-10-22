@@ -286,6 +286,30 @@ body {
 }
 
 /* ==========================================
+   EFECTO ESPECIAL HOVER PARA EL ENLACE Monitor admin paneeeel
+========================================== */
+
+/* Anulamos la linea inferior clasica para esta opcion en especifico */
+.nav-link.monitor-link::after {
+    display: none !important;
+}
+
+.nav-link.monitor-link {
+    /* Le damos un poco de padding para que el fondo se vea como una pildora */
+    padding: 8px 16px;
+    border-radius: 5px;
+    /* Transición suave para todos los cambios de color y sombra */
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Estado al pasar el cursor por encima */
+.nav-link.monitor-link:hover {
+    background-color: #5f9c0e; /* Verde azulado corporativo */
+    color: #ffffff !important; /* Texto blanco para que resalte */
+    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3); /* Halo de luz suave */
+}
+
+/* ==========================================
    TABLA RESPONSIVA
 ========================================== */
 .table-responsive {

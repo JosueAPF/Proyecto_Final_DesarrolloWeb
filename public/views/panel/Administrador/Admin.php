@@ -50,6 +50,9 @@
                     <li>
                         <a href="Admin.php?GestionCajero=listarCajeros" class="nav-link">Mis Cajeros</a>
                     </li>
+                    <li>
+                        <a href="Admin.php?GestionCajero=MonitorResumen" class="nav-link monitor-link">Monitor</a>
+                    </li>
                     <li><a href='../logaout.php' class="nav-link">Salir</a></li>
                 </ul>
 
@@ -80,6 +83,9 @@
                     break;
                 case 'NuevoCajero':
                     require 'GestionCajero/NuevoCajero.php';
+                    break;
+                case 'MonitorResumen':
+                    require 'GestionCajero/MonitorResumen.php';
                     break;
                 default:
                     require 'GestionCajero/Main.php';
