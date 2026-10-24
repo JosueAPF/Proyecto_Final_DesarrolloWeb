@@ -135,6 +135,22 @@ class ClienteServicio
             ];
         }
     }
+
+    public function obtenerSaldo(int $id_usuario){
+        try {
+            return $this->repo->obtener_saldo_cliente($id_usuario);
+        } catch (Exception $e) {
+            return [
+                'estado' => -1,
+                'mensaje' => $e->getMessage()
+            ];
+        }
+    }
 }
-/**ya tengo sueño */
+
+/*
+$servicio = new ClienteServicio();
+$obtenerSaldo = $servicio->obtenerSaldo(16);
+print_r($obtenerSaldo);
+*/
 ?>

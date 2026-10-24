@@ -78,6 +78,18 @@ class UsuarioRepository{
         $conn->execute();
         return $conn->get_result()->fetch_all(MYSQLI_ASSOC);
     }
+    /**
+     * 
+     * consumo del sp_obtener_saldo
+     */
+
+    public function obtener_saldo_cliente(int $id_usuario){
+        $dbconn = $this->dbConn->getConnection();
+        $conn = $dbconn->prepare("CALL sp_obtener_saldo(?)");
+        $conn->bind_param("i",$id_usuario);
+        $conn->execute();
+        return $conn->get_result()->fetch_assoc();
+    }
 
 }
 
